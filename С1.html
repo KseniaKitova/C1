@@ -1,0 +1,66 @@
+﻿<meta charset="UTF-8" />
+<script>
+  
+    var first_tens = [ "десять", "одинадцять", "дванадцять", "тринадцять", "чотирнадцять", "п'ятнадцять", "шістнадцять", "сімнадцять", "вісімнадцять", "дев'ятнадцять" ];
+    var endings = ["гривна", "гривні", "гривні", "гривні", "гривень", 'гривень', 'гривень', 'гривень', 'гривень'];
+
+    var units = [
+		[ "одна", "дві", "три", "чотири", "п'ять", "шість", "сім", "вісім", "дев'ять" ],
+		[ "десять", "двадцять", "тридцять", "сорок", "п'ятдесят", "шістдесят", "сімдесят", "вісімдесят", "дев'яносто" ],
+		[ "сто", "двісті", "триста", "чотириста", "п'ятсот", "шістсот", "сімсот", "вісімсот", "дев'ятсот" ],
+    ];
+
+    console.log(endings);
+
+    var number = prompt( 'введите число', '');
+	
+    console.log(number);
+
+    var number_array = number.split('');
+
+    console.log(number_array);
+
+    var word = [];
+
+    var number_length = number_array.length;
+
+    console.log(number_length);
+
+    if(number_length == 1){
+    	word.push(units[0][number-1]);
+    	word.push(endings[number-1]);
+    }
+    else if(number_length == 2){
+
+    	if(number < 20) {
+	    	word.push(first_tens[number-10]);
+	    	word.push(endings[5]);    		
+    	}
+    	else {
+			get_word();
+    	}
+
+    }
+    else {
+   		get_word();
+    }
+
+
+    function get_word(){
+			number_array.reverse().forEach(function(item, i, arr) {
+		  		if(i == 0) {
+		  			word.push(endings[item-1]);
+		  		}
+				word.push(units[i][item-1]);
+			}); 
+
+			word.reverse();	
+    }
+
+    word = word.join(' ')
+
+	console.log( word );
+
+	alert(word);
+
+</script>
